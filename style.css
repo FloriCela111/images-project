@@ -6,7 +6,9 @@
 }
 
 body {
-    background: blue;
+    background: linear-gradient(to top, #0575e6, #021b79);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .search {
@@ -59,7 +61,7 @@ body {
     width: 100%;
     max-width: 800px;
     padding: 0 20px;
-    border-radius: 10px;
+    border-radius: 50px;
 }
 .subscription {
     display: flex;
