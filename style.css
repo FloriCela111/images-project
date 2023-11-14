@@ -11,14 +11,8 @@ body {
   background-attachment: fixed;
 }
 .card {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.card-row {
-  max-width: 820px;
-  width: 100%;
   background: #181717;
+  border-radius: 5px;
 }
 
 .search {
@@ -30,7 +24,7 @@ body {
 .search-row {
   display: flex;
   width: 100%;
-  max-width: 800px;
+  max-width: 860px;
   padding: 0 20px;
   height: 50px;
 }
@@ -61,6 +55,14 @@ body {
 .search button img {
   width: 20px;
 }
+
+.card-container {
+  padding: 30px;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-gap: 10px;
+}
+
 .images {
   display: flex;
   justify-content: center;
@@ -69,8 +71,8 @@ body {
 .images img {
   display: block;
   width: 100%;
-  max-width: 800px;
-  padding: 0 20px;
+  max-width: 900px;
+  padding-bottom: 80px;
 }
 .subscription {
   display: flex;
@@ -102,6 +104,7 @@ body {
 .subscription-row h1 {
   display: inline-block;
   color: #fff;
+  padding-left: 55px;
 }
 
 @media only screen and (max-width: 400px) {
@@ -114,5 +117,9 @@ body {
   .subscription-row h1 {
     font-size: 25px;
     padding-bottom: 10px;
+    padding-left: 50px;
+  }
+  .card-container {
+    grid-template-columns: auto;
   }
 }
