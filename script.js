@@ -1,6 +1,6 @@
-import dataJson from './response.json';
+import dataJson from './response.json' assert {type: 'json'};
 
-console.log(dataJson.photos[0].photographer);
+console.log(dataJson);
 
 // const searchInput = document.getElementById('input-search');
 // const searchBtn = document.getElementById('search-btn');
