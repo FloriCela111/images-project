@@ -8,8 +8,17 @@ console.log(dataJson);
 // const heartBtn = document.querySelector('.heart-btn');
 // const authorName = document.querySelector('.author-name');
 
-const card = document.getElementById("card-container");
-card.innerHTML = "";
+const cardContainer = document.getElementById("card-container");
+cardContainer.innerHTML = "";
+
+const card = document.querySelector('.card');
+const overlay = document.querySelector('.overlay');
+
+for(let i = 0; i < card.length; i++) 
+card[i].addEventListener('click', function () {
+  console.log('button clicked');
+})
+
 
 dataJson.photos.map((photo) => {
   const likedPhotos = photo.liked
@@ -28,7 +37,9 @@ dataJson.photos.map((photo) => {
             </div>
           </div>
   </div>
+
+  <div class="overlay"></div>
         
   `;
-  card.insertAdjacentHTML("beforeend", html);
+  cardContainer.insertAdjacentHTML("beforeend", html);
 });
