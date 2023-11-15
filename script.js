@@ -8,18 +8,27 @@ console.log(dataJson);
 // const heartBtn = document.querySelector('.heart-btn');
 // const authorName = document.querySelector('.author-name');
 
-const html = `
-<div class="card">
-        <div class="images">
-          <img src="${original}" alt="" class="pictures" />
+const card = document.getElementById("card-container");
+card.innerHTML = "";
+
+dataJson.photos.map((photo) => {
+  const likedPhotos = photo.liked
+    ? "images/heart-solid.svg"
+    : "images/heart-regular.svg";
+  let html = `
+  <div class="card">
+        <div class="images" style="background-image: url(${photo.src.original})">
         </div>
-        <div class="subscription">
-          <div class="subscription-row">
-            <button class="heart-btn">
-              <img src="images/heart-solid.svg" alt="" />
-            </button>
-            <h1 class="author-name">Name of author</h1>
+          <div class="subscription">
+            <div class="subscription-row">
+              <button class="heart-btn">
+                <img src="${likedPhotos}" alt="" />
+              </button>
+              <h1 class="author-name">${photo.photographer}</h1>
+            </div>
           </div>
-        </div>
-      </div>
-`;
+  </div>
+        
+  `;
+  card.insertAdjacentHTML("beforeend", html);
+});
