@@ -1,24 +1,20 @@
 import dataJson from "./response.json" assert { type: "json" };
 
-console.log(dataJson);
+//console.log(dataJson);
 
-// const searchInput = document.getElementById('input-search');
-// const searchBtn = document.getElementById('search-btn');
-// const pictures = document.querySelector('.pictures');
-// const heartBtn = document.querySelector('.heart-btn');
-// const authorName = document.querySelector('.author-name');
 
 const cardContainer = document.getElementById("card-container");
 cardContainer.innerHTML = "";
 
-const card = document.querySelector('.card');
-const overlay = document.querySelector('.overlay');
+const modalHtml = `
+<div id="myModal" class="modal">
+  <span class="close">&times;</span>
+  <img class="modal-content" id="img01">
+  <div id="caption"></div>
+</div>
+`;
 
-for(let i = 0; i < card.length; i++) 
-card[i].addEventListener('click', function () {
-  console.log('button clicked');
-})
-
+// cardContainer.insertAdjacentElement("beforeend", modalHtml);
 
 dataJson.photos.map((photo) => {
   const likedPhotos = photo.liked
@@ -26,7 +22,7 @@ dataJson.photos.map((photo) => {
     : "images/heart-regular.svg";
   let html = `
   <div class="card">
-        <div class="images" style="background-image: url(${photo.src.original})">
+        <div class="images" id='image' style="background-image: url(${photo.src.original})">
         </div>
           <div class="subscription">
             <div class="subscription-row">
@@ -37,9 +33,29 @@ dataJson.photos.map((photo) => {
             </div>
           </div>
   </div>
-
-  <div class="overlay"></div>
-        
   `;
-  cardContainer.insertAdjacentHTML("beforeend", html);
+
+  const modal = document.getElementById('myModal');
+  const caption = document.getElementById('caption');
+  const image = document.getElementById('img01');
+  const close = document.querySelector('close');
+  const card = document.querySelector("card")
+
+  cardContainer.insertAdjacentHTML("beforeend", html, modalHtml);
+
 });
+
+let divImage = document.getElementById("card-container").children
+console.log(divImage)
+divImage.forEach(element => {
+  element.addEventListener('click', function (e) {
+    document.getElementById("modal").classList.add("modal")
+    console.log('Button clicked', e);
+    // modal.classList.remove('hidden');
+    // caption.classList.remove('hiddden');
+
+  })
+});
+
+
+
