@@ -22,7 +22,7 @@ dataJson.photos.map((photo) => {
     : "images/heart-regular.svg";
   let html = `
   <div class="card">
-        <div class="images" id='image' style="background-image: url(${photo.src.original})">
+        <div class="images" id='imageCard' style="background-image: url(${photo.src.original})">
         </div>
           <div class="subscription">
             <div class="subscription-row">
@@ -35,27 +35,38 @@ dataJson.photos.map((photo) => {
   </div>
   `;
 
-  const modal = document.getElementById('myModal');
-  const caption = document.getElementById('caption');
-  const image = document.getElementById('img01');
-  const close = document.querySelector('close');
-  const card = document.querySelector("card")
+  // const modal = document.getElementById('myModal');
+  // // const caption = document.getElementById('caption');
+  // const images = document.getElementById("image")
+  // const image = document.getElementById('img01');
+  // const close = document.querySelector('close');
+  // const card = document.querySelector("card")
 
   cardContainer.insertAdjacentHTML("beforeend", html, modalHtml);
 
 });
 
-let divImage = document.getElementById("card-container").children
-console.log(divImage)
-divImage.forEach(element => {
-  element.addEventListener('click', function (e) {
-    document.getElementById("modal").classList.add("modal")
-    console.log('Button clicked', e);
-    // modal.classList.remove('hidden');
-    // caption.classList.remove('hiddden');
+// let divImage = document.getElementById("card-container").children
+// console.log(divImage)
+// divImage.forEach(element => {
+//   element.addEventListener('click', function (e) {
+//     document.getElementById("modal").classList.add("modal")
+//     console.log('Button clicked', e);
+//     // modal.classList.remove('hidden');
+//     // caption.classList.remove('hiddden');
 
-  })
-});
+//   })
+// });
+const modal = document.getElementById('myModal');
+// const caption = document.getElementById('caption');
+const imagesCards = document.querySelectorAll("imageCard")
+const modalImage = document.getElementById('img01');
+// const close = document.querySelector('close');
+// const card = document.querySelector("card")
 
-
-
+imagesCards.forEach((image) => {
+  image.addEventListener("click", function () {
+    modal.style.display = "block";
+    modalImage.src = this.src;
+  });
+})
