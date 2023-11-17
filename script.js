@@ -8,13 +8,14 @@ cardContainer.innerHTML = "";
 
 const modalHtml = `
 <div id="myModal" class="modal">
-  <span class="close">&times;</span>
-  <img class="modal-content" id="img01">
+  <span class="close"><img  src="/images/circle-xmark-solid.svg" class="closeImg"/></span>
+  <img class="modal-content" id="img01" style="background-color: transparent; border-color: transparent">
   <div id="caption"></div>
 </div>
+
 `;
 
-// cardContainer.insertAdjacentElement("beforeend", modalHtml);
+cardContainer.insertAdjacentHTML("beforeend", modalHtml);
 
 dataJson.photos.map((photo) => {
   const likedPhotos = photo.liked
@@ -22,12 +23,13 @@ dataJson.photos.map((photo) => {
     : "images/heart-regular.svg";
   let html = `
   <div class="card">
-        <div class="images" id='imageCard' style="background-image: url(${photo.src.original})">
-        </div>
+        <img class="images" id='imageCard'src="${photo.src.original}">
+       
+       
           <div class="subscription">
             <div class="subscription-row">
               <button class="heart-btn">
-                <img src="${likedPhotos}" alt="" />
+                <img src="${likedPhotos}" alt="${photo}" />
               </button>
               <h1 class="author-name">${photo.photographer}</h1>
             </div>
@@ -42,7 +44,7 @@ dataJson.photos.map((photo) => {
   // const close = document.querySelector('close');
   // const card = document.querySelector("card")
 
-  cardContainer.insertAdjacentHTML("beforeend", html, modalHtml);
+  cardContainer.insertAdjacentHTML("beforeend", html);
 
 });
 
@@ -57,10 +59,13 @@ dataJson.photos.map((photo) => {
 
 //   })
 // });
-const modal = document.getElementById('myModal');
-// const caption = document.getElementById('caption');
-const imagesCards = document.querySelectorAll("imageCard")
+const modal = document.querySelector(".modal");
+const caption = document.getElementById('caption');
+const myModal = document.getElementById('myModal')
+
+const imagesCards = document.querySelectorAll("#imageCard")
 const modalImage = document.getElementById('img01');
+const closeModalBtn = document.querySelector(".close");
 // const close = document.querySelector('close');
 // const card = document.querySelector("card")
 
@@ -68,5 +73,21 @@ imagesCards.forEach((image) => {
   image.addEventListener("click", function () {
     modal.style.display = "block";
     modalImage.src = this.src;
-  });
+    caption.innerHTML = this.alt;
+  })
+
+  closeModalBtn.onclick = function () {
+    modal.style.display = "none";
+  };
+
+  myModal.addEventListener('click', function () {
+    modal.style.display = "none";
+  })
+  document.addEventListener('keydown', function (e) {
+
+    if (e.key === "Escape") {
+      modal.style.display = "none";
+    }
+  })
 })
+
